@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { ReactNode } from "react";
 import NavBar from "@/components/navBar"
+import Footer from "@/components/footer"
+import Social from "@/components/custom/social"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +30,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <NavBar/>
           {children}
+          <Footer/>
+          <Social/>
         </ThemeProvider>
       </body>
     </html>

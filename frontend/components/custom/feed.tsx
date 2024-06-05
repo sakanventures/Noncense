@@ -63,6 +63,11 @@ export default function Feed() {
             <h3 className="font-semibold">Uneasy no settle whence nature narrow in afraid</h3>
             <p className="text-sm text-muted-foreground">WILLIAM LEWIS · APRIL 29, 2018</p>
           </div>
+          <div>
+            <h3 className="font-semibold">Uneasy no settle whence nature narrow in afraid</h3>
+            <p className="text-sm text-muted-foreground">WILLIAM LEWIS · APRIL 29, 2018</p>
+          </div>
+          
         </div>
       </div>
     </div>

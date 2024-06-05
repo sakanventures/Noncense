@@ -125,13 +125,13 @@ export default function NavBar() {
       </Link>
       <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
         <Link className="hover:underline hover:underline-offset-4" href="#">
-          Home
+          News
         </Link>
         <Link className="hover:underline hover:underline-offset-4" href="#">
-          Features
+          Article
         </Link>
         <Link className="hover:underline hover:underline-offset-4" href="#">
-          Pricing
+          Episode
         </Link>
         <Link className="hover:underline hover:underline-offset-4" href="#">
           About
