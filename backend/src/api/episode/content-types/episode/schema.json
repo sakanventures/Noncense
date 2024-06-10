@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "episodes",
+  "info": {
+    "singularName": "episode",
+    "pluralName": "episodes",
+    "displayName": "Episode",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    },
+    "Slug": {
+      "type": "uid",
+      "required": true
+    },
+    "Categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "Episodes"
+    },
+    "Tag": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tag.tag",
+      "inversedBy": "Episodes"
+    },
+    "Thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Featured": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "RichTextBlock": {
+      "type": "blocks"
+    },
+    "Episode": {
+      "type": "biginteger"
+    }
+  }
+}

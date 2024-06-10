@@ -29,7 +29,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           disableTransitionOnChange
         >
           <NavBar/>
+          <div className="mt-16">
           {children}
+          </div>
           <Footer/>
           <Social/>
         </ThemeProvider>

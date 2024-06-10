@@ -788,6 +788,175 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles';
+  info: {
+    singularName: 'article';
+    pluralName: 'articles';
+    displayName: 'Article';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Description: Attribute.Text;
+    isFeatured: Attribute.Boolean & Attribute.DefaultTo<false>;
+    Slug: Attribute.UID & Attribute.Required;
+    Categories: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::category.category'
+    >;
+    Tags: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::tag.tag'
+    >;
+    Thumbnail: Attribute.Media;
+    Featured: Attribute.Media;
+    RichTextBlock: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Articles: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::article.article'
+    >;
+    Episodes: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::episode.episode'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEpisodeEpisode extends Schema.CollectionType {
+  collectionName: 'episodes';
+  info: {
+    singularName: 'episode';
+    pluralName: 'episodes';
+    displayName: 'Episode';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Description: Attribute.Text;
+    isFeatured: Attribute.Boolean & Attribute.DefaultTo<false>;
+    Slug: Attribute.UID & Attribute.Required;
+    Categories: Attribute.Relation<
+      'api::episode.episode',
+      'manyToMany',
+      'api::category.category'
+    >;
+    Tag: Attribute.Relation<
+      'api::episode.episode',
+      'manyToOne',
+      'api::tag.tag'
+    >;
+    Thumbnail: Attribute.Media;
+    Featured: Attribute.Media;
+    RichTextBlock: Attribute.Blocks;
+    Episode: Attribute.BigInteger;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::episode.episode',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::episode.episode',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTagTag extends Schema.CollectionType {
+  collectionName: 'tags';
+  info: {
+    singularName: 'tag';
+    pluralName: 'tags';
+    displayName: 'Tag';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Articles: Attribute.Relation<
+      'api::tag.tag',
+      'manyToMany',
+      'api::article.article'
+    >;
+    Episodes: Attribute.Relation<
+      'api::tag.tag',
+      'oneToMany',
+      'api::episode.episode'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::tag.tag', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -806,6 +975,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::article.article': ApiArticleArticle;
+      'api::category.category': ApiCategoryCategory;
+      'api::episode.episode': ApiEpisodeEpisode;
+      'api::tag.tag': ApiTagTag;
     }
   }
 }

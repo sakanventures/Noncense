@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { StrapiImage } from "@/components/custom/strapiImage";
 
 export default function Featured() {
   return (
