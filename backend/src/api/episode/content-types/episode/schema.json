@@ -62,6 +62,14 @@
     },
     "Episode": {
       "type": "biginteger"
+    },
+    "VideoID": {
+      "type": "string"
+    },
+    "Platform": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.platform"
     }
   }
 }

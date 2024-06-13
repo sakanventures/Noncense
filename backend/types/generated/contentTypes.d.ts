@@ -906,6 +906,8 @@ export interface ApiEpisodeEpisode extends Schema.CollectionType {
     Featured: Attribute.Media;
     RichTextBlock: Attribute.Blocks;
     Episode: Attribute.BigInteger;
+    VideoID: Attribute.String;
+    Platform: Attribute.Component<'links.platform', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

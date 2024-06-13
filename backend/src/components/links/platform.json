@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_links_platforms",
+  "info": {
+    "displayName": "Platform",
+    "icon": "headphone"
+  },
+  "options": {},
+  "attributes": {
+    "AppleUrl": {
+      "type": "string"
+    },
+    "SpotifyUrl": {
+      "type": "string"
+    },
+    "RssUrl": {
+      "type": "string"
+    }
+  }
+}

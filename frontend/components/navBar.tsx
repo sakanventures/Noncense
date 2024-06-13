@@ -152,8 +152,9 @@ export default function NavBar() {
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
+        
         <SheetContent className="w-full max-w-xs" side="right">
-          <div className="flex flex-col gap-6 p-6">
+          <div className="flex flex-col gap-6 p-3">
             <Link className="font-medium hover:underline hover:underline-offset-4" href="#">
               Home
             </Link>

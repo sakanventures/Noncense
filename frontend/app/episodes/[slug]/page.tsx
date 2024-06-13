@@ -1,16 +1,144 @@
-import { Separator } from "@/components/ui/separator"
-import { ScrollArea } from "@/components/ui/scroll-area"
+"use client";
 
-export default function Episode() {
+import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
+import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
+import { Separator } from '@/components/ui/separator';
+import Platform from "@/components/custom/platform"
+
+interface RichTextBlock {
+  type: string;
+  children: { type: string; text: string }[];
+}
+
+interface ImageData {
+  id: number;
+  attributes: {
+    name: string;
+    alternativeText: string | null;
+    caption: string | null;
+    width: number;
+    height: number;
+    formats: {
+      thumbnail: {
+        url: string;
+      };
+      small: {
+        url: string;
+      };
+      medium: {
+        url: string;
+      };
+      large: {
+        url: string;
+      };
+    };
+    url: string;
+  };
+}
+
+interface PlatformProps {
+  id: number;
+  AppleUrl: string;
+  SpotifyUrl: string;
+  RssUrl: string;
+}
+
+interface EpisodeProps {
+  id: number;
+  attributes: {
+    createdAt: string;
+    updatedAt: string;
+    Slug: string;
+    Title: string;
+    Description: string;
+    Category: string;
+    Tab: string;
+    Featured: {
+      data: ImageData[];
+    };
+    RichTextBlock: RichTextBlock[];
+    VideoID: string;
+    Episode: number;
+    Platform: PlatformProps[];
+  };
+}
+
+interface EpisodeAPIProps {
+  data: EpisodeProps[];
+}
+
+export default function EpisodeData() {
+  const baseUrl = "http://localhost:1337";
+  const { slug } = useParams();
+  const [episodeProps, setEpisodeProps] = useState<EpisodeProps | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchEpisode = async () => {
+      try {
+        const res = await fetch(
+          `${baseUrl}/api/episodes?filters[Slug][$eq]=${slug}&populate=*`
+        );
+        if (!res.ok) {
+          throw new Error('Failed to fetch blog post');
+        }
+        const result: EpisodeAPIProps = await res.json();
+        if (result.data.length > 0) {
+          setEpisodeProps(result.data[0]); // Assuming there's only one blog post with the provided slug
+        } else {
+          setError('Blog post not found');
+        }
+      } catch (error) {
+        console.error('Error fetching blog post:', error);
+        setError('Failed to fetch blog post');
+      }
+    };
+
+    if (slug) {
+      fetchEpisode();
+    }
+  }, [slug]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!episodeProps) {
+    return <div>Loading...</div>;
+  }
+
+  const streamUrl = episodeProps.attributes.VideoID;
+  const content: BlocksContent = episodeProps.attributes.RichTextBlock as unknown as BlocksContent;
+
+  // Convert the createdAt timestamp to MM/DD/YYYY format
+  // const formatDate = (timestamp: string) => {
+  //   const date = new Date(timestamp);
+  //   const month = date.getMonth() + 1; // getMonth() is zero-based
+  //   const day = date.getDate();
+  //   const year = date.getFullYear();
+  //   return `${month}/${day}/${year}`;
+  // };
+
+  // Convert the createdAt timestamp to "Month Day, Year" format
+  const formatDate = (timestamp: string) => {
+    const date = new Date(timestamp);
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
+
+  const formattedDate = formatDate(episodeProps.attributes.createdAt);
+
   return (
     <div className="w-full">
 
       <section className="w-full bg-gray-950 py-12 md:py-24 lg:py-32">
         <div className="container grid gap-10 px-4 md:px-6 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-4">
-            <div className="inline-block rounded-lg bg-gray-800 px-3 py-1 text-sm text-gray-50">Episode 42</div>
+            <div className="inline-block rounded-lg bg-gray-800 px-3 py-1 text-sm text-gray-50">Episode {episodeProps.attributes.Episode}</div>
             <h1 className="text-3xl font-bold tracking-tighter text-gray-50 sm:text-4xl md:text-5xl lg:text-6xl">
-              The Future of Podcasting
+              {episodeProps.attributes.Title}
             </h1>
             <div className="flex items-center gap-3 text-gray-400">
               <div className="flex items-center gap-2">
@@ -18,21 +146,21 @@ export default function Episode() {
                 <span>John Doe</span>
               </div>
               <Separator className="h-4 w-px bg-gray-700" />
-              <div>June 10, 2024</div>
+              <div>{formattedDate}</div>
             </div>
             <p className="max-w-[600px] text-gray-400">
-              In this episode, we explore the exciting future of the podcasting industry. Our guest, John Doe, shares
-              his insights on the latest trends, emerging technologies, and the impact of AI on podcast production and
-              distribution.
+              <BlocksRenderer content={content}/>
             </p>
           </div>
           <div className="aspect-video rounded-lg overflow-hidden">
-            <video controls className="w-full h-full object-cover">
-              <source
-                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                type="video/mp4"
-              />
-            </video>
+            <iframe 
+              width="560" 
+              height="315" 
+              src={`https://www.youtube.com/embed/${streamUrl}`}
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen>
+              </iframe>
           </div>
         </div>
       </section>
@@ -42,42 +170,10 @@ export default function Episode() {
           <div>
             <h2 className="mb-4 text-2xl font-bold tracking-tighter text-gray-950 dark:text-gray-50">Episode Audio</h2>
             <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-950">
-              <audio controls className="w-full">
-                <source
-                  src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-                  type="audio/mpeg"
-                />
-              </audio>
+            <Platform platformData={episodeProps.attributes.Platform}/>
             </div>
           </div>
-          <div>
-            <h2 className="mb-4 text-2xl font-bold tracking-tighter text-gray-950 dark:text-gray-50">Show Notes</h2>
-            <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-950">
-              <ScrollArea className="max-h-[300px]">
-                <div className="space-y-4 text-sm text-gray-500 dark:text-gray-400">
-                  <p>
-                    In this episode, we explore the exciting future of the podcasting industry. Our guest, John Doe,
-                    shares his insights on the latest trends, emerging technologies, and the impact of AI on podcast
-                    production and distribution.
-                  </p>
-                  <p>
-                    Some key topics covered in this episode include:
-                    <ul className="list-disc pl-4">
-                      <li>The rise of voice-first interfaces and their impact on podcast discovery</li>
-                      <li>Advancements in audio editing and production tools powered by AI</li>
-                      <li>Strategies for building a successful podcast brand and monetizing your content</li>
-                      <li>The future of podcast advertising and dynamic ad insertion</li>
-                      <li>Emerging podcast formats and the evolution of the medium</li>
-                    </ul>
-                  </p>
-                  <p>
-                    Be sure to tune in to hear John's expert insights and predictions for the future of this rapidly
-                    evolving industry.
-                  </p>
-                </div>
-              </ScrollArea>
-            </div>
-          </div>
+          
         </div>
       </section>
 
@@ -164,5 +260,5 @@ export default function Episode() {
       </section>
       
     </div>
-  )
+  );
 }
