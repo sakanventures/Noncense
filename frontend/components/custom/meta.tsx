@@ -5,7 +5,7 @@ export default function Meta() {
     <div className="flex justify-center items-center h-full">
       <div className="grid grid-cols-1 gap-28 p-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pb-28">
         <section>
-          <h2 className="mb-4 text-2xl font-bold">ANALYSIS</h2>
+          <h2 className="mb-4 text-2xl font-bold">CRYPTO</h2>
           <div className="space-y-4">
             {Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="group flex items-start">
@@ -27,7 +27,7 @@ export default function Meta() {
           </div>
         </section>
         <section>
-          <h2 className="mb-4 text-2xl font-bold">ANALYSIS</h2>
+          <h2 className="mb-4 text-2xl font-bold">HARDWARE</h2>
           <div className="space-y-4">
             {Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="group flex items-start">
@@ -49,7 +49,7 @@ export default function Meta() {
           </div>
         </section>
         <section>
-          <h2 className="mb-4 text-2xl font-bold">ANALYSIS</h2>
+          <h2 className="mb-4 text-2xl font-bold">GOVT</h2>
           <div className="space-y-4">
             {Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="group flex items-start">
@@ -71,7 +71,7 @@ export default function Meta() {
           </div>
         </section>
         <section>
-          <h2 className="mb-4 text-2xl font-bold">ANALYSIS</h2>
+          <h2 className="mb-4 text-2xl font-bold">FINANCE</h2>
           <div className="space-y-4">
             {Array.from({ length: 4 }).map((_, index) => (
               <div key={index} className="group flex items-start">

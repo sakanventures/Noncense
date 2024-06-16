@@ -814,8 +814,8 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'manyToMany',
       'api::tag.tag'
     >;
-    Thumbnail: Attribute.Media;
-    Featured: Attribute.Media;
+    Thumbnail: Attribute.Media<'images'>;
+    Featured: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     RichTextBlock: Attribute.Blocks;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -902,8 +902,8 @@ export interface ApiEpisodeEpisode extends Schema.CollectionType {
       'manyToOne',
       'api::tag.tag'
     >;
-    Thumbnail: Attribute.Media;
-    Featured: Attribute.Media;
+    Thumbnail: Attribute.Media<'images'>;
+    Featured: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     RichTextBlock: Attribute.Blocks;
     Episode: Attribute.BigInteger;
     VideoID: Attribute.String;
@@ -919,6 +919,37 @@ export interface ApiEpisodeEpisode extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::episode.episode',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGlobalGlobal extends Schema.SingleType {
+  collectionName: 'globals';
+  info: {
+    singularName: 'global';
+    pluralName: 'globals';
+    displayName: 'Global';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Advertisement: Attribute.Component<'layout.ad-banner'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::global.global',
       'oneToOne',
       'admin::user'
     > &
@@ -980,6 +1011,7 @@ declare module '@strapi/types' {
       'api::article.article': ApiArticleArticle;
       'api::category.category': ApiCategoryCategory;
       'api::episode.episode': ApiEpisodeEpisode;
+      'api::global.global': ApiGlobalGlobal;
       'api::tag.tag': ApiTagTag;
     }
   }
