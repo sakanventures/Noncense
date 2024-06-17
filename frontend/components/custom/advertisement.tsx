@@ -11,7 +11,7 @@ interface AdProps {
       Title: string;
       Description: string;
       Url: string;
-      ImageUrl?: string;
+      ImageUrl: string;
     };
   };
 }
@@ -29,7 +29,7 @@ export default function Advertisement() {
   useEffect(() => {
     const fetchAd = async () => {
       try {
-        const res = await fetch(`${baseUrl}/api/advertisement?populate=*`);
+        const res = await fetch(`${baseUrl}/api/global?populate=*`);
         if (!res.ok) {
           throw new Error('Failed to fetch advertisements');
         }
@@ -67,7 +67,7 @@ export default function Advertisement() {
             className="relative w-[1446px] h-[100px] rounded-lg overflow-hidden"
           >
             <Image
-              src={data.attributes.Advertisement.ImageUrl || "/placeholder.svg"}
+              src={baseUrl+data.attributes.Advertisement.ImageUrl || "/placeholder.svg"}
               alt="Ad Banner"
               width={1446}
               height={100}
