@@ -97,7 +97,7 @@ export default function ArticleData() {
     return <div>Loading...</div>;
   }
 
-  const featuredImage = articleProps.attributes.Featured.data[0].attributes;
+  const featuredImage = articleProps.attributes.Featured.data?.[0]?.attributes;
   const content: BlocksContent = articleProps.attributes.RichTextBlock as unknown as BlocksContent;
 
   return (

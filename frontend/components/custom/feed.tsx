@@ -45,7 +45,6 @@ interface ArticleProps {
     Description: string;
     Category: string;
     Tags: string;
-    Tabs: string;
     Thumbnail: {
       data: ImageData;
     };
@@ -101,8 +100,8 @@ export default function Feed() {
 
                 <CardContent>
                   <div className="flex space-x-2 py-4">
-                    <Badge variant="secondary">LIFESTYLE</Badge>
-                    <Badge variant="secondary">LIFESTYLE</Badge>
+                    <Badge variant="secondary">{post.attributes.Category}</Badge>
+                    <Badge variant="secondary">{post.attributes.Category}</Badge>
                   </div>
                   <CardTitle>{post.attributes.Title}</CardTitle>
                 </CardContent>

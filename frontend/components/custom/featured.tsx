@@ -103,20 +103,18 @@ export default function Featured() {
           const thumbnail = post.attributes.Thumbnail.data.attributes.url;
           const link = post.type === 'article' ? `/articles/${post.attributes.Slug}` : `/episodes/${post.attributes.Slug}`;
           return (
-            <div
-              key={idx}
-              className="flex flex-col items-start justify-between p-12 bg-[#f7d1cd] rounded-lg w-1/2 bg-cover bg-center"
-              style={{ backgroundImage: `url(${baseUrl}${thumbnail})` }}
-            >
+            <Link href={link} key={idx}
+            className="flex flex-col items-start justify-between p-12 bg-[#f7d1cd] rounded-lg w-1/2 bg-cover bg-center"
+            style={{ backgroundImage: `url(${baseUrl}${thumbnail})` }} passHref>
               <div className="mt-[150px]">
                 <h1 className="text-4xl font-bold leading-tight text-white">
                   {post.attributes.Title}
                 </h1>
-                <Link href={link} passHref>
-                  <Button variant="secondary" className="mt-2">Read More</Button>
-                </Link>
+                
+                  {/* <Button variant="secondary" className="mt-2">Read More</Button> */}
+                
               </div>
-            </div>
+            </Link>
           );
         })
       ) : (
