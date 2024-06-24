@@ -33,6 +33,22 @@ interface ImageData {
   };
 }
 
+interface CategoryProps {
+  data: {
+    attributes: {
+      Title: string;
+    }
+  }
+}
+
+interface TagsProps {
+  data: {
+    attributes: {
+      Title: string;
+    }
+  }
+}
+
 interface ArticleProps {
   id: number;
   type: 'article' | 'episode';
@@ -43,8 +59,8 @@ interface ArticleProps {
     Title: string;
     isFeatured: boolean;
     Description: string;
-    Category: string;
-    Tags: string;
+    Category: CategoryProps[];
+    Tags: TagsProps[];
     Thumbnail: {
       data: ImageData;
     };
@@ -96,12 +112,11 @@ export default function Feed() {
                   className="w-full rounded-t-lg"
                   width={1000}
                   height={1000} />
-                
 
                 <CardContent>
                   <div className="flex space-x-2 py-4">
                     <Badge variant="secondary">{post.attributes.Category}</Badge>
-                    <Badge variant="secondary">{post.attributes.Category}</Badge>
+                    <Badge variant="secondary">{post.attributes.Tags}</Badge>
                   </div>
                   <CardTitle>{post.attributes.Title}</CardTitle>
                 </CardContent>

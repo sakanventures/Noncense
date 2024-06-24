@@ -23,7 +23,7 @@ function SearchIcon(props: any) {
 export default function Search(props: any) {
     return (
         <form className="relative hidden md:block">
-        <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
+        <SearchIcon className="absolute left-2 top-2 h-4 w-4 text-gray-500 dark:text-gray-400" />
         <Input
         className="pl-8 pr-4 h-8 w-[200px] rounded-md bg-gray-100 dark:bg-gray-800 dark:text-gray-50 focus:outline-none focus:ring-1 focus:ring-gray-950 dark:focus:ring-gray-300"
         placeholder="Search..."

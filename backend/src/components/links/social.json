@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_links_socials",
+  "info": {
+    "displayName": "Social"
+  },
+  "options": {},
+  "attributes": {
+    "XUrl": {
+      "type": "string"
+    },
+    "AppleUrl": {
+      "type": "string"
+    },
+    "SpotifyUrl": {
+      "type": "string"
+    },
+    "YoutubeUrl": {
+      "type": "string"
+    },
+    "DiscordUrl": {
+      "type": "string"
+    }
+  }
+}

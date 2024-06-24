@@ -648,9 +648,6 @@ video {
   .left-2 {
   left: 0.5rem;
 }
-  .left-2\.5 {
-  left: 0.625rem;
-}
   .left-\[50\%\] {
   left: 50%;
 }
@@ -677,9 +674,6 @@ video {
 }
   .top-2 {
   top: 0.5rem;
-}
-  .top-2\.5 {
-  top: 0.625rem;
 }
   .top-4 {
   top: 1rem;

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_links_nav_bars",
+  "info": {
+    "displayName": "NavBar"
+  },
+  "options": {},
+  "attributes": {
+    "Link": {
+      "type": "string"
+    },
+    "Url": {
+      "type": "string"
+    },
+    "Order": {
+      "type": "integer"
+    }
+  }
+}

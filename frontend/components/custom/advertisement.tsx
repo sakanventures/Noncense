@@ -61,30 +61,31 @@ export default function Advertisement() {
   return (
     <div className="flex justify-center pt-12">
      <a
-            key={adData.id}
-            href={adData.attributes.Url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative w-[1446px] h-[100px] rounded-lg overflow-hidden"
-          >
-            <img
-              src={`http://localhost:1337${adData.attributes.Image.data.attributes.url}` || "/placeholder.svg"}
-              alt="Ad Banner"
-              width={1446}
-              height={100}
-              className="object-cover w-full h-full"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/30 flex items-center justify-center text-center px-8">
-              <div className="space-y-2">
-                <h2 className="text-4xl font-extrabold tracking-tight text-white">
-                  {adData.attributes.Title}
-                </h2>
-                <p className="text-xl text-gray-300">
-                  {adData.attributes.Description}
-                </p>
-              </div>
-            </div>
-          </a>
+        key={adData.id}
+        href={adData.attributes.Url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative w-[1446px] h-[100px] rounded-lg overflow-hidden"
+      >
+        <img
+          src={`http://localhost:1337${adData.attributes.Image.data.attributes.url}` || "/placeholder.svg"}
+          alt="Ad Banner"
+          width={1446}
+          height={100}
+          className="object-cover w-full h-full"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/30 flex items-center justify-center text-center px-8">
+          <div className="space-y-2">
+            <h2 className="text-4xl font-extrabold tracking-tight text-white">
+              {adData.attributes.Title}
+            </h2>
+            <p className="text-xl text-gray-300">
+              {adData.attributes.Description}
+            </p>
+          </div>
+        </div>
+      </a>
     </div>
   );
 }
