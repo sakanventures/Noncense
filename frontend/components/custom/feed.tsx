@@ -34,18 +34,16 @@ interface ImageData {
 }
 
 interface CategoryProps {
-  data: {
-    attributes: {
-      Title: string;
-    }
+  id: number;
+  attributes: {
+    Title: string;
   }
 }
 
 interface TagsProps {
-  data: {
-    attributes: {
-      Title: string;
-    }
+  id: number;
+  attributes: {
+    Title: string;
   }
 }
 
@@ -59,8 +57,13 @@ interface ArticleProps {
     Title: string;
     isFeatured: boolean;
     Description: string;
-    Category: CategoryProps[];
-    Tags: TagsProps[];
+    Categories: {
+      data: CategoryProps[];
+    };
+    Tags: {
+      data: TagsProps[];
+    };
+    
     Thumbnail: {
       data: ImageData;
     };
@@ -84,6 +87,7 @@ export default function Feed() {
         }
         const jsonData = await res.json();
         const postData: ArticleProps[] = jsonData.data;
+        console.log('-------------postData:', postData);
         setArticle(postData);
       } catch (error) {
         console.error('Error fetching articles:', error);
@@ -99,28 +103,40 @@ export default function Feed() {
   return (
     <div className="flex justify-between m-8">
       {!loading && articleProps.length > 0 ? (
-        articleProps.map((post, idx) => {
-          const thumbnail = post.attributes.Thumbnail.data.attributes.url;
+        articleProps.map((post) => {
+          const { Title, Slug, Thumbnail, Categories, Tags } = post.attributes;
+          console.log("---------Category", Categories)
+          console.log("---------Tags", Tags)
+          const thumbnailUrl = Thumbnail?.data?.attributes?.url;
 
           return (
-            <div key={idx} className="flex space-x-4">
-              <Link href={`/articles/${post.attributes.Slug}`} passHref>
-              <Card className="rounded-lg w-[300px]">
-                <Image
-                  src={baseUrl+thumbnail} 
-                  alt={post.attributes.Title} 
-                  className="w-full rounded-t-lg"
-                  width={1000}
-                  height={1000} />
+            <div key={post.id} className="flex space-x-4">
+              <Link href={`/articles/${Slug}`} passHref>
+                <Card className="rounded-lg w-[300px]">
+                  <img
+                    src={baseUrl + thumbnailUrl}
+                    alt={Title}
+                    className="w-full rounded-t-lg"
+                    width={1000}
+                    height={1000}
+                  />
+                  <CardContent>
+                    <div className="flex space-x-2 py-4">
+                      {Categories?.data?.map((categories) => (
+                        <Badge key={categories.id} variant="secondary">
+                          {categories.attributes.Title}
+                        </Badge>
+                      ))}
 
-                <CardContent>
-                  <div className="flex space-x-2 py-4">
-                    <Badge variant="secondary">{post.attributes.Category}</Badge>
-                    <Badge variant="secondary">{post.attributes.Tags}</Badge>
-                  </div>
-                  <CardTitle>{post.attributes.Title}</CardTitle>
-                </CardContent>
-              </Card>
+                      {Tags?.data?.map((tag) => (
+                        <Badge key={tag.id} variant="secondary">
+                          {tag.attributes.Title}
+                        </Badge>
+                      ))}
+                    </div>
+                    <CardTitle>{Title}</CardTitle>
+                  </CardContent>
+                </Card>
               </Link>
             </div>
           );
