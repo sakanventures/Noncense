@@ -4,7 +4,8 @@
   "info": {
     "singularName": "footer",
     "pluralName": "footers",
-    "displayName": "Footer"
+    "displayName": "Footer",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,14 +16,30 @@
       "type": "string"
     },
     "Logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "Platform": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.nav-bar"
+    },
+    "Services": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.nav-bar"
+    },
+    "Legal": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.nav-bar"
     }
   }
 }

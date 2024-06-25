@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_post_singles",
+  "info": {
+    "displayName": "Single"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Slug": {
+      "type": "string"
+    },
+    "Featured": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "RichTextBlock": {
+      "type": "blocks"
+    }
+  }
+}

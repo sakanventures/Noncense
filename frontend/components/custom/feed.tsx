@@ -100,6 +100,13 @@ export default function Feed() {
     fetchArticle();
   }, []);
 
+  const truncateTitle = (title: string, maxLength: number) => {
+    if (title.length <= maxLength) {
+      return title;
+    }
+    return `${title.slice(0, maxLength)}...`;
+  };
+
   return (
     <div className="flex justify-between m-8">
       {!loading && articleProps.length > 0 ? (
@@ -134,7 +141,7 @@ export default function Feed() {
                         </Badge>
                       ))}
                     </div>
-                    <CardTitle>{Title}</CardTitle>
+                    <CardTitle>{truncateTitle(Title, 55)}</CardTitle>
                   </CardContent>
                 </Card>
               </Link>

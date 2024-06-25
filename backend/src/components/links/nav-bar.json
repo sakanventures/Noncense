@@ -1,7 +1,8 @@
 {
   "collectionName": "components_links_nav_bars",
   "info": {
-    "displayName": "NavBar"
+    "displayName": "NavBar",
+    "description": ""
   },
   "options": {},
   "attributes": {

@@ -4,6 +4,7 @@ export interface LinksNavBar extends Schema.Component {
   collectionName: 'components_links_nav_bars';
   info: {
     displayName: 'NavBar';
+    description: '';
   };
   attributes: {
     Link: Attribute.String;
@@ -39,12 +40,27 @@ export interface LinksSocial extends Schema.Component {
   };
 }
 
+export interface PostSingle extends Schema.Component {
+  collectionName: 'components_post_singles';
+  info: {
+    displayName: 'Single';
+  };
+  attributes: {
+    Title: Attribute.String;
+    Description: Attribute.Text;
+    Slug: Attribute.String;
+    Featured: Attribute.Media<'images', true>;
+    RichTextBlock: Attribute.Blocks;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'links.nav-bar': LinksNavBar;
       'links.platform': LinksPlatform;
       'links.social': LinksSocial;
+      'post.single': PostSingle;
     }
   }
 }
