@@ -695,7 +695,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -724,6 +723,18 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    firstname: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+        maxLength: 20;
+      }>;
+    lastname: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+        maxLength: 20;
+      }>;
+    dob: Attribute.Date & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
