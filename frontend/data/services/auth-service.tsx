@@ -17,7 +17,7 @@ interface LoginUserProps {
 // const baseUrl = "http://localhost:1337";
 
 export async function registerUserService(userData: RegisterUserProps) {
-    const url = new URL("http://localhost:1337/api/auth/local/register");
+    const url = new URL("http://127.0.0.1:1337/api/auth/local/register");
   
     try {
       const response = await fetch(url, {
@@ -37,7 +37,7 @@ export async function registerUserService(userData: RegisterUserProps) {
 
   export async function loginUserService(userData: LoginUserProps) {
     const { identifier, password } = userData;
-    const url = new URL("http://localhost:1337/api/auth/local/");
+    const url = new URL("http://127.0.0.1:1337/api/auth/local/");
   
     try {
       const response = await fetch(url, {

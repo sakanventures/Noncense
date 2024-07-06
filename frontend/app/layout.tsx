@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import NavBar from "@/components/navBar"
 import Footer from "@/components/footer"
 import Social from "@/components/custom/social"
+import {getUserMeLoader} from "@/data/services/get-user-me-loader"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const user = await getUserMeLoader();
+  // console.log('----------->user data layout=>', user)
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -28,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          <NavBar/>
+          <NavBar user={user}/>
           <div className="mt-16">
           {children}
           </div>

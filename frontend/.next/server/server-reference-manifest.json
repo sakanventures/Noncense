@@ -3,40 +3,40 @@
     "223690175cc9d281691ca7eca94f5283ee864dd5": {
       "workers": {
         "app/(auth)/signin/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=!",
-        "app/(auth)/signup/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/(auth)/signup/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/(auth)/signin/page": "action-browser",
-        "app/dashboard/page": "rsc",
-        "app/(auth)/signup/page": "action-browser"
+        "app/(auth)/signup/page": "action-browser",
+        "app/dashboard/page": "rsc"
       }
     },
     "8c245b6655f37fb066700121ddf6f16a9b4dc678": {
       "workers": {
         "app/(auth)/signin/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=!",
-        "app/(auth)/signup/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/(auth)/signup/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/(auth)/signin/page": "action-browser",
-        "app/dashboard/page": "rsc",
-        "app/(auth)/signup/page": "action-browser"
+        "app/(auth)/signup/page": "action-browser",
+        "app/dashboard/page": "rsc"
       }
     },
     "d6a8867081fa28eded21bd6e17457b6b4328dd40": {
       "workers": {
         "app/(auth)/signin/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
-        "app/dashboard/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=!",
-        "app/(auth)/signup/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!"
+        "app/(auth)/signup/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=true!",
+        "app/dashboard/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsterlingsavariau%2FCode%2FDevelopment%2FNoncense%2Ffrontend%2Fdata%2Factions%2Fauth-actions.tsx%22%2C%5B%22loginUserAction%22%2C%22registerUserAction%22%2C%22logoutAction%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/(auth)/signin/page": "action-browser",
-        "app/dashboard/page": "rsc",
-        "app/(auth)/signup/page": "action-browser"
+        "app/(auth)/signup/page": "action-browser",
+        "app/dashboard/page": "rsc"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "xAkjdvQdHlCP91WbyQnVc1SKm2plM/GOf9GOA0l1eo4="
+  "encryptionKey": "UpZs3ncMOQD33BwwbrgNDZl24WH+7MN7hQ4ju5+UX2w="
 }

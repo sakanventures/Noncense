@@ -1,19 +1,52 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { LogoutButton } from "@/components/custom/LogoutButton";
+import { getUserMeLoader } from "@/data/services/get-user-me-loader";
 
-export default function Dashboard() {
+interface UserData {
+  firstname: string;
+  lastname: string;
+  email: string;
+  dob: string;
+  username: string;
+}
+
+export default async function Dashboard() {
+  const user = await getUserMeLoader();
+
+  const formatDate = (dob: string) => {
+    const date = new Date(dob);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#FAF8F6]">
-      
       <div className="flex flex-col items-center">
         <Avatar className="w-24 h-24">
           <AvatarImage src="/placeholder.svg" />
-          <AvatarFallback><Loader2 className="h-4 w-4 animate-spin" /></AvatarFallback>
+          <AvatarFallback>
+            <Loader2 className="h-4 w-4 animate-spin" />
+          </AvatarFallback>
         </Avatar>
-        <h2 className="mt-4 text-lg font-semibold text-[#1E3A8A]">First Last</h2>
-        <ShareIcon className="w-6 h-6 text-black" />
+
+        <div className="flex flex-col items-left justify-center py-12">
+          <h2 className="text-lg font-semibold text-[#1E3A8A]">
+            Username: {user.data.username}
+          </h2>
+
+          <h2 className="text-lg font-semibold text-[#1E3A8A]">
+            Name: {user.data.firstname} {user.data.lastname}
+          </h2>
+
+          <h2 className="text-lg font-semibold text-[#1E3A8A]">
+            Birthday: {formatDate(user.data.dob)}
+          </h2>
+        </div>
+
         <LogoutButton />
       </div>
 
@@ -25,26 +58,5 @@ export default function Dashboard() {
         </Button>
       </div>
     </div>
-  )
-}
-
-function ShareIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-      <polyline points="16 6 12 2 8 6" />
-      <line x1="12" x2="12" y1="2" y2="15" />
-    </svg>
-  )
+  );
 }

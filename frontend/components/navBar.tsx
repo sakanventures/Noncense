@@ -1,13 +1,22 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuRadioItem, DropdownMenuRadioGroup, DropdownMenuContent, DropdownMenu } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuRadioItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuContent,
+  DropdownMenu,
+} from "@/components/ui/dropdown-menu";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import Search from "@/components/search";
 import Toggle from "@/components/toggle";
 import { FaBars } from "react-icons/fa6";
+import { SignInButton } from "@/components/custom/SignInButton";
 
 interface ImageData {
   data: {
@@ -54,7 +63,20 @@ interface GlobalData {
   };
 }
 
-export default function NavBar() {
+interface UserData {
+  firstname: string;
+  lastname: string;
+  email: string;
+}
+
+interface NavBarProps {
+  user?: {
+    data: UserData;
+  };
+}
+
+export default function NavBar({ user }: NavBarProps) {
+  console.log("----------->user data navbar====================>", user);
   const baseUrl = "http://localhost:1337";
   const [globalData, setGlobalData] = useState<GlobalData | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -65,17 +87,17 @@ export default function NavBar() {
       try {
         const res = await fetch(`${baseUrl}/api/global?populate=*`);
         if (!res.ok) {
-          throw new Error('Failed to fetch global data');
+          throw new Error("Failed to fetch global data");
         }
         const jsonData: GlobalData = await res.json();
         if (jsonData.data && jsonData.data.attributes) {
           setGlobalData(jsonData);
         } else {
-          setError('No global data found');
+          setError("No global data found");
         }
       } catch (error) {
-        console.error('Error fetching global data:', error);
-        setError('Failed to fetch global data');
+        console.error("Error fetching global data:", error);
+        setError("Failed to fetch global data");
       } finally {
         setLoading(false);
       }
@@ -115,21 +137,30 @@ export default function NavBar() {
       </Link>
 
       <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-        {sortedNavigation.map((navItem) => (
-          <Link key={navItem.id} className="hover:underline hover:underline-offset-4" href={navItem.Url}>
-            {navItem.Link}
-          </Link>
-        ))}
+        {sortedNavigation.map((navItem) =>
+          navItem.Url.startsWith("http") ? (
+            <a
+              key={navItem.id}
+              href={navItem.Url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {navItem.Link}
+            </a>
+          ) : (
+            <Link key={navItem.id} href={navItem.Url}>
+              {navItem.Link}
+            </Link>
+          )
+        )}
+
         <Search />
       </nav>
-
-      <div className="hidden md:flex items-center gap-4">
-        <Button size="sm" variant="outline">
-          Sign In
-        </Button>
-        <Toggle />
-      </div>
-
+      {user && user.data ? (
+        <div className="text-red-500 font-bold ">{user.data.firstname}</div>
+      ) : (
+        <SignInButton />
+      )}
       <Sheet>
         <SheetTrigger asChild>
           <Button className="md:hidden" size="icon" variant="ghost">
@@ -141,14 +172,16 @@ export default function NavBar() {
         <SheetContent className="w-full max-w-xs" side="right">
           <div className="flex flex-col gap-6 p-3">
             {sortedNavigation.map((navItem) => (
-              <Link key={navItem.id} className="font-medium hover:underline hover:underline-offset-4" href={navItem.Url}>
+              <Link
+                key={navItem.id}
+                className="font-medium hover:underline hover:underline-offset-4"
+                href={navItem.Url}
+              >
                 {navItem.Link}
               </Link>
             ))}
             <div className="flex items-center justify-between">
-              <Button size="sm" variant="outline">
-                Sign In
-              </Button>
+              <SignInButton />
               <Toggle />
             </div>
           </div>
