@@ -17,6 +17,7 @@ import Search from "@/components/search";
 import Toggle from "@/components/toggle";
 import { FaBars } from "react-icons/fa6";
 import { SignInButton } from "@/components/custom/SignInButton";
+import Dropdown from "@/components/user/dropDown";
 
 interface ImageData {
   data: {
@@ -64,6 +65,7 @@ interface GlobalData {
 }
 
 interface UserData {
+  username: string;
   firstname: string;
   lastname: string;
   email: string;
@@ -76,7 +78,7 @@ interface NavBarProps {
 }
 
 export default function NavBar({ user }: NavBarProps) {
-  console.log("----------->user data navbar====================>", user);
+  // console.log("----------->user data navbar====================>", user);
   const baseUrl = "http://localhost:1337";
   const [globalData, setGlobalData] = useState<GlobalData | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -157,7 +159,7 @@ export default function NavBar({ user }: NavBarProps) {
         <Search />
       </nav>
       {user && user.data ? (
-        <div className="text-red-500 font-bold ">{user.data.firstname}</div>
+        <Dropdown user={user}/>
       ) : (
         <SignInButton />
       )}

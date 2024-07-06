@@ -1,7 +1,6 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { LogoutButton } from "@/components/custom/LogoutButton";
 import { getUserMeLoader } from "@/data/services/get-user-me-loader";
 
 interface UserData {
@@ -47,7 +46,6 @@ export default async function Dashboard() {
           </h2>
         </div>
 
-        <LogoutButton />
       </div>
 
       <div className="flex flex-col items-center mt-8">
